@@ -1,3 +1,3 @@
 QuizzIn
 
-Fictive multiplayer online quiz app - Collaborative project
+Hardcore !!!!! multiplayer online quiz app - Collaborative project
