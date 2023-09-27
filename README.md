@@ -54,4 +54,5 @@ On peut cliquer sur un bouton “passer”
 <h2>Charte graphique</h2>
 <ul>
   <li><a href="https://coolors.co/06c699-ffede1-fccc32-ed6931-fa003f">Palette de couleurs</a></li>
+ <li><a href="https://triv-91051.bubbleapps.io/version-test/signup?debug_mode=true">Exemples d'écrans</a> (entrer nom@mail.com dans le premier champ)</li>
 </ul>
