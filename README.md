@@ -51,8 +51,19 @@ Un écran par question avec une interface telle que:
 On peut swipper à droite ou cliquer sur un bouton “suivant”
 On peut cliquer sur un bouton “passer”
 
-<h2>Charte graphique</h2>
+<h2>Charte graphique:</h2>
 <ul>
   <li><a href="https://coolors.co/06c699-ffede1-fccc32-ed6931-fa003f">Palette de couleurs</a></li>
- <li><a href="https://triv-91051.bubbleapps.io/version-test/signup?debug_mode=true">Exemples d'écrans</a> (entrer nom@mail.com dans le premier champ)</li>
+ <li><a href="https://triv-91051.bubbleapps.io/version-test/signup?debug_mode=true">Exemples d'écrans</a></li>
+</ul>
+
+<h1>Structure du backend:</h1>
+
+<h2>Base de données:</h2>
+
+<ul>
+ <li>Base de données relationnelle: PostgreSQL</li>
+ <li>ORM: Sequelize</li>
+ <li>UML:</li>
+ <img src="https://github.com/AraHugoAra/quizzin/assets/98523545/fd0378ef-5b5b-4d6b-b033-5e811e28adad" />
 </ul>
