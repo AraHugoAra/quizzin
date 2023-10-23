@@ -1,22 +1,22 @@
-const { Sequelize } = require("sequelize");
+import { Sequelize } from "sequelize";
+import "dotenv/config";
 
-const database = "quizzIn";
-const username = "root";
-const password = "root";
-// const port = "8889";
+const database = process.env.DATABASE!;
+const username = process.env.USERNAME!;
+const password = process.env.PASSWORD!;
+const port = Number(process.env.PORT)!;
 
-console.log("hello");
 const sequelize = new Sequelize(database, username, password, {
   host: "localhost",
   dialect: "mysql",
-  port: 8889
+  port: port
 });
 
 export const checkDbConnection = async () => {
   try {
     await sequelize.authenticate();
-    console.log("Connection has been established successfully.");
+    console.log("Connection has been established successfully 🚀🚀");
   } catch (error) {
-    console.error("Unable to connect to the database:", error);
+    console.error("Unable to connect to the database: 😭😭😭😭", error);
   }
 };
