@@ -3,7 +3,7 @@ import "dotenv/config";
 
 const database = process.env.DATABASE_NAME;
 const username = process.env.USERNAME_DB;
-const password = process.env.USERNAME_DB;
+const password = process.env.PASSWORD_DB;
 const port = Number(process.env.PORT_DB);
 
 const sequelize = new Sequelize(database!, username!, password!, {
