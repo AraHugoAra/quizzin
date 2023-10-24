@@ -1,15 +1,15 @@
 import { Sequelize } from "sequelize";
 import "dotenv/config";
 
-const database = process.env.DATABASE;
-const username = process.env.USERNAME;
-const password = process.env.PASSWORD;
-const port = Number(process.env.PORT);
+const database = process.env.DATABASE_NAME;
+const username = process.env.USERNAME_DB;
+const password = process.env.USERNAME_DB;
+const port = Number(process.env.PORT_DB);
 
 const sequelize = new Sequelize(database!, username!, password!, {
   host: "localhost",
   dialect: "mysql",
-  port: port
+  port: port,
 });
 
 export const checkDbConnection = async () => {
