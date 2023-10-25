@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from "express";
-import { checkDbConnection } from "./dbConfig";
+import { checkDbConnection, sequelizeConfig } from "./dbConfig";
+import { User } from "./models/User";
 
 const app: Application = express();
 const PORT = 3000;
@@ -16,7 +17,7 @@ app.get("/", async (req: Request, res: Response): Promise<Response> => {
 // START SERVER
 try {
   app.listen(PORT, () => {
-    console.log(`Server is started🌈`);
+    console.log(`Server is started on ${PORT}🌈`);
   });
 } catch (error: unknown) {
   if (error instanceof TypeError)
@@ -24,3 +25,9 @@ try {
 }
 
 checkDbConnection();
+
+// const createUser = async () => {
+//   User.create({ userName: "Toto" });
+// };
+
+// createUser();
