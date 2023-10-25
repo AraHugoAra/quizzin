@@ -14,7 +14,7 @@ export const checkDbConnection = async () => {
     await sequelizeConfig.authenticate();
     console.log("Connection has been established successfully 🚀🚀");
   } catch (error) {
-    console.error("Unable to connect to the database: 😭😭😭😭", error);
+    throw new Error(`Unable to connect to the database: 😭😭😭😭: ${error}`);
   }
 };
 
@@ -23,7 +23,7 @@ export const synchronizeDb = async () => {
     sequelizeConfig.sync();
     // sequelizeConfig.sync({alter : true});
     console.log("All models were synchronized successfully.🧡🧡🧡");
-  } catch (error ) {
-    console.error('Unable to synchronize the database', error);
+  } catch (error) {
+    throw new Error(`Unable to synchronize the database : ${error}`);
   }
 }
