@@ -65,7 +65,8 @@ On peut cliquer sur un bouton “passer”
  <li>Base de données relationnelle: PostgreSQL</li>
  <li>ORM: Sequelize</li>
  <li>UML:</li>
- <img src="https://github.com/AraHugoAra/quizzin/assets/98523545/423ea8eb-35a7-4670-856f-b8505d663579" />
+
+ <img width="804" alt="Capture d’écran 2023-10-25 à 15 05 47" src="https://github.com/AraHugoAra/quizzin/assets/98523545/7814957b-51ed-4df8-90d4-86d2e664404e">
 </ul>
 
 
