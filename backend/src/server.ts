@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from "express";
 import { checkDbConnection, synchronizeDb } from "./dbConfig";
-import { User } from "./models/User";
+import { User, Category, Score } from "./models";
 
 const app: Application = express();
 const PORT = 3000;
@@ -27,7 +27,11 @@ try {
 checkDbConnection();
 synchronizeDb();
 
-// const createUser = async () => {
-//     await User.create({ userName: "wesh" });
-//   }
-// createUser();
+const createdb = async () => {
+  await User.create({ userName: "Yiyi" });
+  await Category.create({ categoryName: "Histoire" });
+  await Score.create({ weeklyScore: 100 });
+  // await Quiz.create({ questions: 100 });
+};
+
+createdb();

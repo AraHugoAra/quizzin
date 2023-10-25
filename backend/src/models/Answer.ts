@@ -1,13 +1,25 @@
-import { Sequelize, DataTypes } from "sequelize";
-const sequelize = new Sequelize("sqlite::memory:");
+import { DataTypes } from "sequelize";
+import { sequelizeConfig } from "../dbConfig";
 
-const Categorie = sequelize.define("Categorie", {
-  // Model attributes are defined here
-  categorieName: {
+export const Answer = sequelizeConfig.define("Answer", {
+  difficlty: {
     type: DataTypes.STRING,
+    allowNull: false
+  },
+  question: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  isCorrect: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  duration: {
+    type: DataTypes.NUMBER,
+    allowNull: false
+  },
+  date: {
+    type: DataTypes.DATE,
     allowNull: false
   }
 });
-
-// `sequelize.define` also returns the model
-console.log(Categorie === sequelize.models.Categorie); // true
