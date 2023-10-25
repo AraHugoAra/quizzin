@@ -1,5 +1,5 @@
 import express, { Application, Request, Response } from "express";
-import { checkDbConnection, sequelizeConfig } from "./dbConfig";
+import { checkDbConnection, synchronizeDb } from "./dbConfig";
 import { User } from "./models/User";
 
 const app: Application = express();
@@ -25,9 +25,9 @@ try {
 }
 
 checkDbConnection();
+synchronizeDb();
 
 // const createUser = async () => {
-//   User.create({ userName: "Toto" });
-// };
-
+//     await User.create({ userName: "wesh" });
+//   }
 // createUser();
