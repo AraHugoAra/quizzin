@@ -62,7 +62,7 @@ On peut cliquer sur un bouton “passer”
 <h2>Base de données:</h2>
 
 <ul>
- <li>Base de données relationnelle: PostgreSQL</li>
+ <li>Base de données relationnelle: mySQL</li>
  <li>ORM: Sequelize</li>
  <li>UML:</li>
 
