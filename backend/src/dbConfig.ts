@@ -20,8 +20,8 @@ export const checkDbConnection = async () => {
 
 export const synchronizeDb = async () => {
   try {
-    sequelizeConfig.sync();
-    // sequelizeConfig.sync({alter : true});
+    await sequelizeConfig.sync({force :true});
+    // await sequelizeConfig.sync({alter : true});
     console.log("All models were synchronized successfully.🧡🧡🧡");
   } catch (error) {
     throw new Error(`Unable to synchronize the database : ${error}`);

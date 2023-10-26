@@ -2,7 +2,19 @@ import { DataTypes } from "sequelize";
 import { sequelizeConfig } from "../dbConfig";
 
 export const Answer = sequelizeConfig.define("Answer", {
-  difficlty: {
+  userId : {
+    type : DataTypes.INTEGER,
+    allowNull : false
+  },
+  categoryId : {
+    type : DataTypes.INTEGER,
+    allowNull : false
+  },
+  quizId : {
+    type : DataTypes.INTEGER,
+    allowNull : false
+  },
+  difficulty: {
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -15,7 +27,7 @@ export const Answer = sequelizeConfig.define("Answer", {
     allowNull: false
   },
   duration: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false
   },
   date: {

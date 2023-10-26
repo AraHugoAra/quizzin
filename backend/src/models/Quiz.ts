@@ -9,5 +9,12 @@ export const Quiz = sequelizeConfig.define("Quiz", {
   date: {
     type: DataTypes.DATE,
     allowNull: false
+  },
+  quizType : {
+    type : DataTypes.STRING,
+    allowNull : false,
+    validate : {
+      isIn : [['daily', 'weekly', 'monthly']]
+    }
   }
 });

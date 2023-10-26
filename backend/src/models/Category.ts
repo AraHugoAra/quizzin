@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import { sequelizeConfig } from "../dbConfig";
 
 export const Category = sequelizeConfig.define("Category", {
-  categorieName: {
+  categoryName: {
     type: DataTypes.STRING,
     allowNull: false
   }
