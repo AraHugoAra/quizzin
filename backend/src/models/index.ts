@@ -7,40 +7,27 @@ import { Quiz_Participation } from "./Quiz_Participation";
 import { Score } from "./Score";
 
 // relation with Users table
-// User.hasOne(Answer, {foreignKey : 'userId'})
-// Answer.belongsTo(User);
+// Answer
+User.hasOne(Answer, {foreignKey : 'userId'});
+Answer.belongsTo(User, {foreignKey : 'userId'});
 
-// User.hasOne(Score, {foreignKey : 'userId'})
-// Score.belongsTo(User);
+// Score
+User.hasOne(Score, {foreignKey : 'userId'})
+Score.belongsTo(User, {foreignKey : 'userId'})
 
-// User.hasMany(Quiz_Participation);
-// User.hasMany(Score);
-
-//relation with Categories table
-// Category.hasOne(Answer);
+// relation with Categories table
+// Answer
+Category.hasOne(Answer, {foreignKey : 'categoryId'});
+Answer.belongsTo(Category, {foreignKey : 'categoryId'});
 
 //relation with Quiz table
-// Quiz.hasOne(Quiz_Participation);
+// Quiz_Participation
+Quiz.hasOne(Quiz_Participation, {foreignKey : 'quizId'});
+Quiz_Participation.belongsTo(Quiz, {foreignKey : 'quizId'});
+//Answer
+Quiz.hasOne(Answer, {foreignKey : 'quizId'});
+Answer.belongsTo(Quiz, {foreignKey : 'quizId'});
 
 
 
-
-
-
-// Answer.hasOne(User, { foreignKey: "id" });
-// User.belongsTo(Answer, { foreignKey: "id" });
-
-// Answer.hasOne(Category, { foreignKey: "id" });
-// Category.belongsTo(Answer, { foreignKey: "id" });
-
-// Quiz_Participation.hasOne(User, { foreignKey: "id" });
-// Quiz_Participation.hasOne(Quiz, { foreignKey: "id" });
-
-// User.belongsTo(Quiz_Participation, { foreignKey: "id" });
-// Quiz.belongsTo(Quiz_Participation, { foreignKey: "id" });
-
-// Score.hasOne(User, { foreignKey: "id" });
-// User.belongsTo(Score, { foreignKey: "id" });
-
-// export { User, Answer, Category, Quiz, Quiz_Participation, Score };
-export {User,  Answer, Category, Quiz_Participation, Quiz , Score };
+export {User, Category, Answer, Score, Quiz, Quiz_Participation};

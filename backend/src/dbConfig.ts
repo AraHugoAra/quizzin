@@ -6,7 +6,13 @@ const {DATABASE_NAME : database, USERNAME_DB : username, PASSWORD_DB : password,
 export const sequelizeConfig = new Sequelize(database!, username!, password!, {
   host: "localhost",
   dialect: "mysql",
-  port: Number(port)
+  port: Number(port),
+  pool : {
+    max : 5,
+    min : 0,
+    acquire : 30000,
+    idle : 10000,
+  }
 });
 
 export const checkDbConnection = async () => {
@@ -20,7 +26,7 @@ export const checkDbConnection = async () => {
 
 export const synchronizeDb = async () => {
   try {
-    await sequelizeConfig.sync({force :true});
+    await sequelizeConfig.sync();
     // await sequelizeConfig.sync({alter : true});
     console.log("All models were synchronized successfully.🧡🧡🧡");
   } catch (error) {

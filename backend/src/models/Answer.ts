@@ -33,5 +33,5 @@ export const Answer = sequelizeConfig.define("Answer", {
   date: {
     type: DataTypes.DATE,
     allowNull: false
-  }
+  },
 });

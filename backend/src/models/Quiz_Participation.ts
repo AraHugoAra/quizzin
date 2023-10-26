@@ -10,5 +10,4 @@ export const Quiz_Participation = sequelizeConfig.define("Quiz_Participation", {
       type : DataTypes.INTEGER,
       allowNull : false
     }
-  }
-);
+  });

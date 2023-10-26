@@ -7,7 +7,7 @@ export const Score = sequelizeConfig.define("Score", {
     allowNull : false
   },
   weeklyScore: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     allowNull: false
   }
 });

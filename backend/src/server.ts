@@ -1,6 +1,5 @@
 import express, { Application, Request, Response } from "express";
 import { checkDbConnection, synchronizeDb } from "./dbConfig";
-import { User ,Answer, Category ,Quiz, Score, Quiz_Participation } from "./models";
 
 const app: Application = express();
 const PORT = 3001;
@@ -26,16 +25,3 @@ try {
 
 checkDbConnection();
 synchronizeDb();
-
-
-
-const createdb = async () => {
-  await User.create({ userName: "test" });
-  // await Category.create({ categoryName: "Geo" });
-  // await Answer.create( {userId : 1, categoryId : 1 , quizId :1, difficulty : 'easy', question : 'Mais QUI ?', isCorrect : true, duration : 1, date : '2023-06-01T00:00:00Z'});
-  // await Score.create({userId : 1, weeklyScore: 100 });
-  // await Quiz.create({ questions: {"question" : "reponse"}, date : '2023-06-01T00:00:00Z', quizType : 'daily'});
-  // await Quiz_Participation.create({userId : 1, quizId : 1});
-};
-
-createdb();
