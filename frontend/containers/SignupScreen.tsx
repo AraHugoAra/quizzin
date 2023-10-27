@@ -30,9 +30,10 @@ const styles = StyleSheet.create({
 
   input: {
     marginTop: 300,
-    marginBottom: 6,
-    width: "85%",
-    height: "10%",
+    marginBottom: 8,
+    width: 300,
+    maxWidth: 350,
+    height: 50,
     backgroundColor: "white",
     borderRadius: 10,
     padding: 10,
