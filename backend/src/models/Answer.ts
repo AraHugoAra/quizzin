@@ -2,36 +2,36 @@ import { DataTypes } from "sequelize";
 import { sequelizeConfig } from "../dbConfig";
 
 export const Answer = sequelizeConfig.define("Answer", {
-  userId : {
-    type : DataTypes.INTEGER,
-    allowNull : false
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
   },
-  categoryId : {
-    type : DataTypes.INTEGER,
-    allowNull : false
+  categoryId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
   },
-  quizId : {
-    type : DataTypes.INTEGER,
-    allowNull : false
+  quizId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
   },
   difficulty: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   question: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   isCorrect: {
     type: DataTypes.BOOLEAN,
-    allowNull: false
+    allowNull: false,
   },
   duration: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   date: {
-    type: DataTypes.DATE,
-    allowNull: false
+    type: DataTypes.DATE, //TODO : check if we need the date or just the day?
+    allowNull: false,
   },
 });
