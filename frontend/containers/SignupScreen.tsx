@@ -1,9 +1,12 @@
 import { StyleSheet, Text, View, TextInput } from "react-native";
 import Button from "../components/button";
+import Title from "../components/Title";
 
 export default function SignupScreen() {
+  console.log("helllooooo");
   return (
     <View style={styles.container}>
+      <Title />
       <TextInput
         style={styles.input}
         placeholder="Enter your username..."
@@ -25,7 +28,9 @@ export default function SignupScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center"
+    height: "100%",
+    alignItems: "center",
+    backgroundColor: "#ffede1"
   },
 
   input: {
