@@ -9,7 +9,7 @@ type HomeProps = {
 }
 
 export const Home : React.FC<HomeProps> = ({userName , score}) => {
-    let heightStatusBar = StatusBar.currentHeight
+    let heightStatusBar = StatusBar.currentHeight as number;
     const style = HomeStyle({heightStatusBar});
     return (
         <View style={style.container}>
@@ -41,7 +41,7 @@ export const Home : React.FC<HomeProps> = ({userName , score}) => {
     )
 }
 
-const HomeStyle = ({heightStatusBar}) => StyleSheet.create({
+const HomeStyle  = ({heightStatusBar} : {heightStatusBar : number} ) => StyleSheet.create({
     container : {
         flexDirection : 'column',
         height : '100%',
