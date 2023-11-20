@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from "express";
 import { checkDbConnection, synchronizeDb } from "./dbConfig";
+import { userRoutes } from "./routes/User";
 
 const app: Application = express();
 const PORT = 3001;
@@ -12,7 +13,7 @@ app.get("/", async (req: Request, res: Response): Promise<Response> => {
     .status(200)
     .send({ message: `Hello, Welcome to the quizzin API!` });
 });
-
+app.use(userRoutes);
 // START SERVER
 try {
   app.listen(PORT, () => {
