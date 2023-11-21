@@ -9,9 +9,9 @@ const getAllCategory = async (req : Request, res : Response) => {
     try {
         const {data} = await axios.request(config);
         console.log(data);
-        res.status(200).json(data?.trivia_categories)
+        res.status(200).json(data?.trivia_categories);
     } catch (error) {
-        throw new Error(`Cannot get categories : ${error}`)
+        throw new Error(`Cannot get categories : ${error}`);
     }
 };
 
