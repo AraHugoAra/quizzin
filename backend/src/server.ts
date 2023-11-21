@@ -1,6 +1,8 @@
 import express, { Application, Request, Response } from "express";
 import { checkDbConnection, synchronizeDb } from "./dbConfig";
 
+import { quizRoutes } from "./routes/Quiz";
+
 const app: Application = express();
 const PORT = 3001;
 
@@ -25,3 +27,6 @@ try {
 
 checkDbConnection();
 synchronizeDb();
+
+// Routes
+app.use("/api/quiz", quizRoutes);
