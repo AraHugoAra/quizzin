@@ -3,7 +3,6 @@ import Button from "../components/button";
 import Title from "../components/Title";
 
 export default function SignupScreen() {
-  console.log("helllooooo");
   return (
     <View style={styles.container}>
       <Title />
