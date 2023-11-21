@@ -3,10 +3,12 @@ import { StyleSheet, Text, View } from "react-native";
 
 //import component
 import Button from "../components/button";
+import Title from "../components/Title";
 
 export default function ChallengeRankingScreen() {
   return (
     <View style={styles.container}>
+      <Title />
       <Text style={styles.title}>Great job !</Text>
 
       <View style={styles.contentCard}>
