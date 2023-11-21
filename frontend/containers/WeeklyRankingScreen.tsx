@@ -25,11 +25,16 @@ export default function WeeklyRankingScreen() {
       <Text style={styles.title}>Weekly Leaderboard</Text>
 
       <FlatList
-        style={styles.rankingList}
+        style={styles.listContainer}
         data={orderedRangkingTab}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item, index }) => (
-          <View style={styles.userRanking}>
+          <View
+            style={[
+              styles.userRanking,
+              index % 2 === 0 ? styles.lineBackground : null
+            ]}
+          >
             <Text style={styles.rankingDetail}>{index + 1}</Text>
             <Text style={styles.rankingDetail}>{item.userName}</Text>
             <Text style={styles.rankingDetail}>{item.score}</Text>
@@ -63,14 +68,16 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
 
-  rankingList: {
+  listContainer: {
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderColor: "grey",
     width: "100%",
-    paddingLeft: "2%",
-    paddingRight: "2%",
     marginBottom: 30
+  },
+
+  lineBackground: {
+    backgroundColor: "#FFE5DB"
   },
 
   userRanking: {
