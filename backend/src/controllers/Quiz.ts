@@ -1,21 +1,12 @@
 import { Quiz } from "../models/index";
 import { Request, Response, NextFunction } from "express";
+import axios from "axios";
 
-const createQuiz = (req: Request, res: Response, next: NextFunction): void => {
-  let quizObject = req.body;
-
-  Quiz.create({
-    questions: quizObject.questions,
-    date: quizObject.date,
-    quizType: quizObject.quizType,
-  })
-    .then(() => res.status(201).json({ message: "New Quiz" }))
-    .catch((error: any) => res.status(400).json({ error }));
-};
-
-const getDailyQuiz = (req: Request, res: Response, next: NextFunction): void => {
-  // let quizObject = req.body;
-
+export const getDailyQuiz = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
   const today = new Date();
   const dateToSearch = new Date(today.toISOString().split("T")[0]);
 
@@ -23,13 +14,36 @@ const getDailyQuiz = (req: Request, res: Response, next: NextFunction): void => 
     where: { date: dateToSearch, quizType: "daily" },
   })
     .then((result) => {
-      if (result) {
+      if (result !== null) {
         res.status(201).json(result);
       } else {
-        res.status(404); //TODO: Create new daily quiz
+        //  return console.log("pas de reponse");
+
+        const url = "https://opentdb.com/api.php?amount=10&type=multiple";
+
+        let quizObject = {
+          questions: [],
+          date: Date.now(),
+          quizType: "daily",
+        };
+
+        axios
+          .get(url)
+          .then((resAPI) => {
+            quizObject.questions = resAPI.data.results;
+
+            Quiz.create({
+              questions: quizObject.questions,
+              date: quizObject.date,
+              quizType: quizObject.quizType,
+            })
+              .then((result) => res.status(201).json(result))
+              .catch((error: any) => res.status(400).json({ error }));
+          })
+          .catch((errAPI) => {
+            console.log(errAPI);
+          });
       }
     })
     .catch((error: any) => res.status(500).json({ error }));
 };
-
-export default createQuiz;
