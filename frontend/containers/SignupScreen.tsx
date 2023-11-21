@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, TextInput } from "react-native";
-import Button from "../components/button";
-import Title from "../components/Title";
+import { Title, Button } from "../components"
 
 export default function SignupScreen() {
   return (

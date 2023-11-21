@@ -1,7 +1,5 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
-import Title from "../components/Title";
-
-import Button from "../components/button";
+import { Title, Button } from "../components"
 
 const rangkingTab = [
   { id: 1, userName: "Yiyi", score: 1000 },
