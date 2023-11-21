@@ -1,5 +1,7 @@
 import express, { Application, Request, Response } from "express";
 import { checkDbConnection, synchronizeDb } from "./dbConfig";
+
+import { quizRoutes } from "./routes/Quiz";
 import { userRoutes } from "./routes/User";
 
 const app: Application = express();
@@ -28,4 +30,5 @@ checkDbConnection();
 synchronizeDb();
 
 // Routes
+app.use("/api/quiz", quizRoutes);
 app.use('/api/user',userRoutes);
