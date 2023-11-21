@@ -2,9 +2,14 @@ import { Quiz } from "../models/index";
 import { Request, Response, NextFunction } from "express";
 import axios from "axios";
 
-const URL_API = "https://opentdb.com/api.php?amount=10&difficulty=hard&type=multiple";
+const URL_API =
+  "https://opentdb.com/api.php?amount=10&difficulty=hard&type=multiple";
 
-function getQuiz(quizType: string, dateToSearch: Date, res: Response): void {
+function fetchAndCreateQuiz(
+  quizType: string,
+  dateToSearch: Date,
+  res: Response
+): void {
   let quizObject = {
     questions: [],
     date: dateToSearch,
@@ -29,71 +34,39 @@ function getQuiz(quizType: string, dateToSearch: Date, res: Response): void {
     });
 }
 
-export const getDailyQuiz = (
+export const getQuiz = (
   req: Request,
   res: Response,
   next: NextFunction
 ): void => {
+  const { quizType } = req.params;
   const today = new Date();
-  const dateToSearch = new Date(today.toISOString().split("T")[0]);
+  let dateToSearch: Date;
+
+  if (quizType === "daily") {
+    dateToSearch = new Date(today.toISOString().split("T")[0]);
+  } else if (quizType === "weekly") {
+    const dayOfWeek = today.getDay();
+    const diff = today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
+    const firstMondayOfTheWeek = new Date(today.setDate(diff));
+    dateToSearch = new Date(firstMondayOfTheWeek.toISOString().split("T")[0]);
+  } else if (quizType === "monthly") {
+    const date = new Date(today.getFullYear(), today.getMonth(), 1);
+    const offset = today.getTimezoneOffset() * 60 * 1000;
+    dateToSearch = new Date(date.getTime() - offset);
+  } else {
+    res.status(400).json({ error: "Invalid quiz type" });
+    return;
+  }
 
   Quiz.findOne({
-    where: { date: dateToSearch, quizType: "daily" },
+    where: { date: dateToSearch, quizType: quizType },
   })
     .then((result) => {
       if (result !== null) {
         res.status(201).json(result);
       } else {
-        getQuiz("daily", dateToSearch, res);
-      }
-    })
-    .catch((error: any) => res.status(500).json({ error }));
-};
-
-export const getWeeklyQuiz = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): void => {
-  const today = new Date();
-  const dayOfWeek = today.getDay();
-  const diff = today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
-  const firstMondayOfTheWeek = new Date(today.setDate(diff));
-  const dateToSearch = new Date(
-    firstMondayOfTheWeek.toISOString().split("T")[0]
-  );
-
-  Quiz.findOne({
-    where: { date: today, quizType: "weekly" },
-  })
-    .then((result) => {
-      if (result !== null) {
-        res.status(201).json(result);
-      } else {
-        getQuiz("weekly", dateToSearch, res);
-      }
-    })
-    .catch((error: any) => res.status(500).json({ error }));
-};
-
-export const getMonthlyQuiz = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): void => {
-  const today = new Date();
-  const dateToSearch = new Date(today.getFullYear(), today.getMonth(), 1);
-  const offset = today.getTimezoneOffset() * 60 * 1000;
-  const localDateToSearch = new Date(dateToSearch.getTime() - offset);
-
-  Quiz.findOne({
-    where: { date: localDateToSearch, quizType: "monthly" },
-  })
-    .then((result) => {
-      if (result !== null) {
-        res.status(201).json(result);
-      } else {
-        getQuiz("monthly", localDateToSearch, res);
+        fetchAndCreateQuiz(quizType, dateToSearch, res);
       }
     })
     .catch((error: any) => res.status(500).json({ error }));
