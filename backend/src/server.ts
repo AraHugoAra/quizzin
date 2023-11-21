@@ -13,7 +13,7 @@ app.get("/", async (req: Request, res: Response): Promise<Response> => {
     .status(200)
     .send({ message: `Hello, Welcome to the quizzin API!` });
 });
-app.use(userRoutes);
+
 // START SERVER
 try {
   app.listen(PORT, () => {
@@ -26,3 +26,6 @@ try {
 
 checkDbConnection();
 synchronizeDb();
+
+// Routes
+app.use('/api/user',userRoutes);
