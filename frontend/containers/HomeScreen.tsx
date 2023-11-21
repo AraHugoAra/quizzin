@@ -8,7 +8,7 @@ type HomeProps = {
     onPress: ()=> void
 }
 
-export const Home : React.FC<HomeProps> = ({userName , score}) => {
+const Home : React.FC<HomeProps> = ({userName , score}) => {
     let heightStatusBar = StatusBar.currentHeight as number;
     const style = HomeStyle({heightStatusBar});
     return (
@@ -21,18 +21,18 @@ export const Home : React.FC<HomeProps> = ({userName , score}) => {
             <View style={style.buttonContainer}>
                 <View style={style.buttonContainerBoth}>
                     <TouchableOpacity style={style.buttonChallenge}>
-                        <Image style={style.icon} source={require('./assets/sword-svgrepo-com.png')}/>
+                        <Image style={style.icon} source={require('../assets/sword-svgrepo-com.png')}/>
                         <Text style={style.wordingButton}> Challenge</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={style.buttonTraining} onPress={() => console.log(heightStatusBar)}>
-                    <Image style={style.icon} source={require('./assets/dumbbell-svgrepo-com.png')}/>
+                    <Image style={style.icon} source={require('../assets/dumbbell-svgrepo-com.png')}/>
                         <Text style={style.wordingButton}> Training </Text>
                     </TouchableOpacity>
                 </View>
                 <View style={style.buttonContainerScore}>
                     <TouchableOpacity  style={style.buttonWeeklyRanking}>
                         <Text style={style.wordingButton}>Weekly Ranking</Text>
-                        <Image style={style.iconCup} source={require('./assets/cup-1-svgrepo-com.png')}/>
+                        <Image style={style.iconCup} source={require('../assets/cup-1-svgrepo-com.png')}/>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -148,3 +148,5 @@ const HomeStyle  = ({heightStatusBar} : {heightStatusBar : number} ) => StyleShe
         elevation: 10,
     }
 });
+
+export default Home
