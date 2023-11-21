@@ -1,4 +1,9 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+# Backend
+node_modules
+dist/
+.env
+
+##### Frontend
 
 # dependencies
 node_modules/
