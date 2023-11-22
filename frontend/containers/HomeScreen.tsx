@@ -1,14 +1,14 @@
 import React  from 'react';
 import {Button, Pressable,TouchableOpacity, Image, StyleSheet, Text, View, StatusBar} from 'react-native';
 
-type HomeProps = {
-    userName : string;
-    score : number;
-    style : string;
-    onPress: ()=> void
-}
+// type HomeProps = {
+//     userName : string;
+//     score : number;
+//     style : string;
+//     onPress: ()=> void
+// }
 
-const Home : React.FC<HomeProps> = ({userName , score}) => {
+const Home = () => {
     let heightStatusBar = StatusBar.currentHeight as number;
     const style = HomeStyle({heightStatusBar});
     return (
