@@ -11,7 +11,7 @@ export const Quiz_Answer = sequelizeConfig.define("Quiz_Answer", {
     allowNull: false,
   },
   isCorrect: {
-    type: DataTypes.ARRAY(DataTypes.BOOLEAN),
+    type: DataTypes.JSON,
     allowNull: false,
   },
   duration: {
