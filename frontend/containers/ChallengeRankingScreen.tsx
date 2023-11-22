@@ -2,8 +2,7 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
 
 //import component
-import Button from "../components/button";
-import Title from "../components/Title";
+import { Title, Button } from "../components"
 
 export default function ChallengeRankingScreen() {
   return (

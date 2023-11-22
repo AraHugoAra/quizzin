@@ -1,22 +1,25 @@
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 
 //import screens
-import SignupScreen from "./containers/SignupScreen";
-import ChallengeRankingScreen from "./containers/ChallengeRankingScreen";
-import WeeklyRankingScreen from "./containers/WeeklyRankingScreen";
+import { ChallengeRankingScreen, SignupScreen, WeeklyRankingScreen, QuestionScreen, Home as HomeScreen } from "./containers";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="WeeklyRanking">
+      <Stack.Navigator initialRouteName="QuestionScreen">
+        <Stack.Screen
+          name="Signup"
+          component={SignupScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="Home"
-          component={SignupScreen}
+          component={HomeScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
@@ -24,10 +27,14 @@ export default function App() {
           component={ChallengeRankingScreen}
           options={{ headerShown: false }}
         />
-
         <Stack.Screen
           name="WeeklyRanking"
           component={WeeklyRankingScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="QuestionScreen"
+          component={QuestionScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
