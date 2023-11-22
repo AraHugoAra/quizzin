@@ -4,6 +4,7 @@ import { sequelizeConfig } from "../dbConfig";
 export const User = sequelizeConfig.define("User", {
   userName: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique : true
   }
 });
