@@ -1,16 +1,12 @@
 import { DataTypes } from "sequelize";
 import { sequelizeConfig } from "../dbConfig";
 
-export const Answer = sequelizeConfig.define("Answer", {
+export const Training_Answer = sequelizeConfig.define("Training_Answer", {
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
   categoryId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  quizId: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
