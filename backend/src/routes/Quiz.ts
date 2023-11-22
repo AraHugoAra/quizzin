@@ -2,6 +2,6 @@ import express from "express";
 
 export const quizRoutes = express.Router();
 
-import { getDailyQuiz } from "../controllers/Quiz";
+import { getQuiz } from "../controllers/Quiz";
 
-quizRoutes.post("/dailyquiz", getDailyQuiz);
+quizRoutes.post("/:quizType", getQuiz);
