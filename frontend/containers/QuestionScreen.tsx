@@ -1,22 +1,21 @@
-import { StyleSheet, Text, View, TextInput } from "react-native";
-import { Button, Title, ProgessBar } from "../components";
+import { StyleSheet, Text, View } from "react-native";
+import { AnswersButtons, Title, ProgessBar } from "../components";
 import { useEffect, useState } from "react";
 
-export default function QuestionScreen() {
+export default function QuestionScreen({url = 'http://localhost:3001/api/quiz/daily'}: {url: string}) {
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState([]);
-  // const [numberOfQuestions, setNumberOfQuestions] = useState(0);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [answers, setAnswers] = useState({});
 
   //put it in custom hook useFetch:
   const fetchQuiz = () => {
-    fetch("http://localhost:3001/api/quiz/daily", { method: "POST" })
+    fetch(url, { method: "POST" })
       .then((data) => data.json())
       .then((json) => {
         //make this a separate function:
         setQuestions(json["questions"]);
-        // setNumberOfQuestions(json["questions"].length);
-        setCurrentQuestion(0);
+        setCurrentIndex(0);
       })
       .finally(() => setLoading(false))
       .catch((err) => console.error(err));
@@ -24,19 +23,29 @@ export default function QuestionScreen() {
 
   useEffect(() => fetchQuiz(), []);
 
+  //Remove after debugging:
+  useEffect(() => {
+    if (currentIndex === 0) {
+      console.log('answers: ', answers)
+      setAnswers({})
+    }
+  }, [currentIndex])
+
   return !loading ? (
     <View style={styles.container}>
       <Title />
-      <Text>{questions[currentQuestion]["question"]}</Text>
-      {/* <Buttons */}
-      <Button
-        backgroundColor="#ed6931"
-        text="Q1"
-        onPress={() => {
-          console.log("Q1");
-        }}
+      <Text>{questions[currentIndex]["question"]}</Text>
+      <AnswersButtons
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+        currentQuestion={questions[currentIndex]}
+        numberOfQuestions={questions.length}
+        setAnswers={setAnswers}
       />
-      <ProgessBar currentQuestion={currentQuestion} numberOfQuestions={questions.length} />
+      <ProgessBar
+        currentIndex={currentIndex}
+        numberOfQuestions={questions.length}
+      />
     </View>
   ) : (
     <Text>Loading...</Text>
@@ -46,7 +55,10 @@ export default function QuestionScreen() {
 const styles = StyleSheet.create({
   container: {
     height: "100%",
-    alignItems: "center",
     backgroundColor: "#ffede1",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingBottom: 40,
   },
 });
