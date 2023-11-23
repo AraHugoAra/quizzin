@@ -2,16 +2,15 @@
 import { StyleSheet, View } from "react-native";
 
 type ProgressBarProps = {
-  currentQuestion: number;
+  currentIndex: number;
   numberOfQuestions: number;
 };
 
 const ProgessBar = ({
-  currentQuestion,
+  currentIndex,
   numberOfQuestions,
 }: ProgressBarProps) => {
-  const progressBarContent: number = 100 - ((numberOfQuestions - (currentQuestion + 1)) * 10);
-  console.log(progressBarContent)
+  const progressBarContent: number = (100 - ((numberOfQuestions - (currentIndex)) * 10)) || 5;
   const styles = ProgressBarStyle({ progressBarContent });
   return (
     <>
@@ -30,12 +29,14 @@ const ProgressBarStyle = ({
   StyleSheet.create({
     container: {},
     progessBar: {
-      height: 15,
+      height: 12,
       width: "90%",
       backgroundColor: "lightgreen",
+      borderRadius: 12,
+      overflow: 'hidden'
     },
     progressBarContent: {
-      height: 15,
+      height: '100%',
       width: `${progressBarContent}%`,
       backgroundColor: "green",
     },
