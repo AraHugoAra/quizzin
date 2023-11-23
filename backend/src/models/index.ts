@@ -29,6 +29,10 @@ Quiz_Participation.belongsTo(Quiz, { foreignKey: "quizId" });
 Quiz.hasOne(Quiz_Answer, { foreignKey: "quizId" });
 Quiz_Answer.belongsTo(Quiz, { foreignKey: "quizId" });
 
+User.hasMany(Quiz_Answer, { foreignKey: "userId" });
+Quiz.hasMany(Quiz_Answer, { foreignKey: "quizId" });
+Quiz_Answer.belongsTo(User, { foreignKey: "userId", as: "user" });
+
 export {
   User,
   Category,
