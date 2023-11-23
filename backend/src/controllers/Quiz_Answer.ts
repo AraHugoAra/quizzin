@@ -92,7 +92,6 @@ export const getQuizAnswersByUserForCurrentWeek = (
         attributes: ["Id"],
       })
         .then((quizzes: any) => {
-          console.log("TEST", quizzes);
           const quizIds = quizzes.map((quiz: any) => quiz.dataValues.Id);
 
           // Retrieve quiz answers for the found quizIds
