@@ -48,8 +48,8 @@ export const getQuiz = (
   } else if (quizType === "weekly") {
     const dayOfWeek = today.getDay();
     const diff = today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1);
-    const firstMondayOfTheWeek = new Date(today.setDate(diff));
-    dateToSearch = new Date(firstMondayOfTheWeek.toISOString().split("T")[0]);
+    const firstDayOfTheWeek = new Date(today.setDate(diff));
+    dateToSearch = new Date(firstDayOfTheWeek.toISOString().split("T")[0]);
   } else if (quizType === "monthly") {
     const date = new Date(today.getFullYear(), today.getMonth(), 1);
     const offset = today.getTimezoneOffset() * 60 * 1000;
