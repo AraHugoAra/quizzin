@@ -10,7 +10,7 @@ export const createQuizAnswer = (
   Quiz_Answer.create({
     ...req.body,
   })
-    .then(() => res.status(201).json({ message: "ok" }))
+    .then(() => res.status(201).json({ message: "Quiz answers recorded!" }))
     .catch((error: any) => res.status(500).json({ error }));
 };
 
