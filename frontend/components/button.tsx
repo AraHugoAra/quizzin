@@ -3,17 +3,19 @@ import { GestureResponderEvent, StyleSheet, Text, TouchableOpacity } from "react
 type ButtonProps = {
   backgroundColor: string;
   text: string;
+  fontStyles?: React.CSSProperties | {};
+  buttonStyles?: React.CSSProperties | {};
   onPress: (event: GestureResponderEvent) => void;
 };
 
-const Button: React.FC<ButtonProps> = ({ backgroundColor, text, onPress }) => {
+const Button: React.FC<ButtonProps> = ({ backgroundColor, fontStyles = {}, text, buttonStyles = {}, onPress }) => {
   return (
     <TouchableOpacity
-      style={[styles.btn, { backgroundColor }]}
+      style={[styles.btn, { backgroundColor }, { ...buttonStyles }]}
       activeOpacity={0.8}
       onPress={onPress}
     >
-      <Text style={styles.btnText}>{text}</Text>
+      <Text style={[styles.btnText, { ...fontStyles }]}>{text}</Text>
     </TouchableOpacity>
   );
 };
@@ -26,10 +28,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 30
   },
-
   btnText: {
     color: "white",
-    fontSize: 16
+    fontSize: 16,
   }
 });
 
