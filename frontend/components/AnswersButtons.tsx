@@ -3,6 +3,7 @@ import { QuestionType } from "../types";
 import Button from "./button";
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigation } from "../App";
+import { htmlDecode } from "../utils";
 
 type AnswersButtonsProps = {
   currentQuestion: QuestionType;
@@ -65,7 +66,7 @@ const AnswersButtons: React.FC<AnswersButtonsProps> = ({
         return (
           <Button
             key={index}
-            text={answer}
+            text={htmlDecode(answer)}
             fontStyles={{color: "black"}}
             buttonStyles={styles.buttons}
             backgroundColor="#FCCC32"
