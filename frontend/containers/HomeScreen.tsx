@@ -1,5 +1,7 @@
 import React  from 'react';
 import {Button, Pressable,TouchableOpacity, Image, StyleSheet, Text, View, StatusBar} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { type StackNavigation } from '../App';
 
 // type HomeProps = {
 //     userName : string;
@@ -9,6 +11,7 @@ import {Button, Pressable,TouchableOpacity, Image, StyleSheet, Text, View, Statu
 // }
 
 const Home = () => {
+    const {navigate} = useNavigation<StackNavigation>()
     let heightStatusBar = StatusBar.currentHeight as number;
     const style = HomeStyle({heightStatusBar});
     return (
@@ -20,7 +23,12 @@ const Home = () => {
             </View>
             <View style={style.buttonContainer}>
                 <View style={style.buttonContainerBoth}>
-                    <TouchableOpacity style={style.buttonChallenge}>
+                    <TouchableOpacity 
+                        style={style.buttonChallenge}
+                        onPress={() => {
+                            navigate('QuestionScreen')
+                        }}
+                    >
                         <Image style={style.icon} source={require('../assets/sword-svgrepo-com.png')}/>
                         <Text style={style.wordingButton}> Challenge</Text>
                     </TouchableOpacity>
@@ -30,7 +38,7 @@ const Home = () => {
                     </TouchableOpacity>
                 </View>
                 <View style={style.buttonContainerScore}>
-                    <TouchableOpacity  style={style.buttonWeeklyRanking}>
+                    <TouchableOpacity  style={style.buttonWeeklyRanking} onPress={() => navigate('WeeklyRanking')}>
                         <Text style={style.wordingButton}>Weekly Ranking</Text>
                         <Image style={style.iconCup} source={require('../assets/cup-1-svgrepo-com.png')}/>
                     </TouchableOpacity>

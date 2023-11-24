@@ -1,10 +1,15 @@
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+
+import { StackNavigation } from "../App";
 
 //import component
 import { Title, Button } from "../components"
 
 export default function ChallengeRankingScreen() {
+  const {navigate} = useNavigation<StackNavigation>()
+
   return (
     <View style={styles.container}>
       <Title />
@@ -32,14 +37,14 @@ export default function ChallengeRankingScreen() {
           backgroundColor="#ed6931"
           text="Home"
           onPress={() => {
-            console.log("navigate to home page");
+            navigate('Home')
           }}
         />
         <Button
           backgroundColor="#fa003f"
           text="Recap"
           onPress={() => {
-            console.log("navigate to home recap");
+            console.log("navigate to recap");
           }}
         />
       </View>
