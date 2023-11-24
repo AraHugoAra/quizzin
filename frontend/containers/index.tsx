@@ -3,5 +3,6 @@ import Home from "./HomeScreen";
 import QuestionScreen from "./QuestionScreen";
 import SignupScreen from "./SignupScreen";
 import WeeklyRankingScreen from "./WeeklyRankingScreen";
+import TestScreen from "./TestScreen";
 
-export { ChallengeRankingScreen, Home, QuestionScreen, SignupScreen, WeeklyRankingScreen }
+export {TestScreen, ChallengeRankingScreen, Home, QuestionScreen, SignupScreen, WeeklyRankingScreen }
