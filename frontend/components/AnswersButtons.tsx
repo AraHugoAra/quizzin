@@ -1,6 +1,8 @@
 import { StyleSheet, View } from "react-native";
 import { QuestionType } from "../types";
 import Button from "./button";
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigation } from "../App";
 
 type AnswersButtonsProps = {
   currentQuestion: QuestionType;
@@ -17,6 +19,8 @@ const AnswersButtons: React.FC<AnswersButtonsProps> = ({
   setCurrentIndex,
   setAnswers,
 }) => {
+  const { navigate } = useNavigation<StackNavigation>()
+
   const randomizedAnswers: string[] = [
     ...currentQuestion["incorrect_answers"],
     currentQuestion["correct_answer"],
@@ -47,7 +51,7 @@ const AnswersButtons: React.FC<AnswersButtonsProps> = ({
         setCurrentIndex((i: number) => i + 1);
       } else {
         //send package of answers
-        console.log("Navigate to quiz recap"); //navigate to quiz recap
+        navigate('ChallengeRanking')
         setCurrentIndex(0);
       }
     }

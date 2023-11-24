@@ -1,6 +1,10 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { Title, Button } from "../components"
 
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigation } from "../App";
+
+
 const rangkingTab = [
   { id: 1, userName: "Yiyi", score: 1000 },
   { id: 2, userName: "John", score: 1200 },
@@ -17,6 +21,7 @@ const rangkingTab = [
 const orderedRangkingTab = rangkingTab.sort((a, b) => b.score - a.score);
 
 export default function WeeklyRankingScreen() {
+  const { navigate } = useNavigation<StackNavigation>()
   return (
     <View style={styles.container}>
       <Title />
@@ -44,7 +49,7 @@ export default function WeeklyRankingScreen() {
           backgroundColor="#ed6931"
           text="Home"
           onPress={() => {
-            console.log("navigate to home page");
+            navigate('Home')
           }}
         />
       </View>
