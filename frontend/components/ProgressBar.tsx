@@ -24,7 +24,7 @@ const ProgessBar = ({
 const ProgressBarStyle = ({
   progressBarContent,
 }: {
-  progressBarContent: any;
+  progressBarContent: number;
 }) =>
   StyleSheet.create({
     container: {},

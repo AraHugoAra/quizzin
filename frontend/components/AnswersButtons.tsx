@@ -3,13 +3,15 @@ import { QuestionType } from "../types";
 import Button from "./button";
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigation } from "../App";
+import { htmlDecode } from "../utils";
 
 type AnswersButtonsProps = {
   currentQuestion: QuestionType;
   numberOfQuestions: number;
   currentIndex: number;
-  setCurrentIndex: any;
-  setAnswers: any;
+  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
+  answers: boolean[]
+  setAnswers: React.Dispatch<React.SetStateAction<boolean[]>>
 };
 
 const AnswersButtons: React.FC<AnswersButtonsProps> = ({
@@ -17,45 +19,65 @@ const AnswersButtons: React.FC<AnswersButtonsProps> = ({
   numberOfQuestions,
   currentIndex,
   setCurrentIndex,
+  answers,
   setAnswers,
 }) => {
-  const { navigate } = useNavigation<StackNavigation>()
+  const { navigate } = useNavigation<StackNavigation>();
 
   const randomizedAnswers: string[] = [
     ...currentQuestion["incorrect_answers"],
     currentQuestion["correct_answer"],
   ].sort((a, b) => 0.5 - Math.random());
 
+  //Is the answer correct ?
+  const isCorrect = (answer: string): boolean => {
+    if (currentQuestion["correct_answer"].indexOf(answer) !== -1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  //Updated answers state:
+  const updateAnswers = (answer: string) => {
+    setAnswers((prevState) => ([
+      ...prevState,
+      isCorrect(answer),
+    ]));
+  };
+  //Send answers to backend:
+  const postAnswers = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/quizanswer?use', {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          userId: 1,
+          quizId: 1,
+          isCorrect: answers,
+          duration: 100})
+      })
+      const json = await response.json()
+      console.log("postAnswers's response: ", json)
+    } catch (error) {
+      console.error(`An error occured during postAnsers: ${error}`)
+    }
+  };
+
   const handlePress = (answer: string) => {
-    //Is the answer correct ?
-    function isCorrect() {
-      if (currentQuestion["correct_answer"].indexOf(answer) !== -1) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
-    //Updated answers state:
-    function updateAnswers() {
-      setAnswers((prevState: { [key: string]: boolean }) => ({
-        ...prevState,
-        [currentIndex]: isCorrect(),
-      }));
-    }
-
     //Next question or end of quiz
-    function nextAction() {
-      updateAnswers();
+    const nextAction = () => {
+      updateAnswers(answer);
       if (currentIndex + 1 < numberOfQuestions) {
         setCurrentIndex((i: number) => i + 1);
       } else {
-        //send package of answers
-        navigate('ChallengeRanking')
+        postAnswers()
+        navigate("ChallengeRanking");
         setCurrentIndex(0);
       }
-    }
-
+    };
     nextAction();
   };
 
@@ -65,8 +87,8 @@ const AnswersButtons: React.FC<AnswersButtonsProps> = ({
         return (
           <Button
             key={index}
-            text={answer}
-            fontStyles={{color: "black"}}
+            text={htmlDecode(answer)}
+            fontStyles={{ color: "black" }}
             buttonStyles={styles.buttons}
             backgroundColor="#FCCC32"
             onPress={() => handlePress(answer)}
@@ -79,17 +101,17 @@ const AnswersButtons: React.FC<AnswersButtonsProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    height: 'auto',
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: 30
+    height: "auto",
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 30,
   },
   buttons: {
     marginTop: 0,
-    width: '80%',
-  }
+    width: "80%",
+  },
 });
 
 export default AnswersButtons;
