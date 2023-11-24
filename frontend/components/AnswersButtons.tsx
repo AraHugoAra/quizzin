@@ -11,6 +11,8 @@ type AnswersButtonsProps = {
   currentIndex: number;
   setCurrentIndex: any;
   setAnswers: any;
+  // answers:any 
+  // questions: any
 };
 
 const AnswersButtons: React.FC<AnswersButtonsProps> = ({
@@ -19,6 +21,7 @@ const AnswersButtons: React.FC<AnswersButtonsProps> = ({
   currentIndex,
   setCurrentIndex,
   setAnswers,
+
 }) => {
   const { navigate } = useNavigation<StackNavigation>()
 
@@ -52,7 +55,7 @@ const AnswersButtons: React.FC<AnswersButtonsProps> = ({
         setCurrentIndex((i: number) => i + 1);
       } else {
         //send package of answers
-        navigate('ChallengeRanking')
+        navigate("ChallengeRanking")
         setCurrentIndex(0);
       }
     }

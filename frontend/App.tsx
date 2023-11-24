@@ -32,7 +32,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="ChallengeRecap">
         <Stack.Screen
           name="Signup"
           component={SignupScreen}
@@ -54,7 +54,7 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="WeeklyRanking"
+          name="ChallengeRecap"
           component={ChallengeRecapScreen}
           options={{ headerShown: false }}
         />

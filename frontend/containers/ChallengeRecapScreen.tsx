@@ -1,7 +1,10 @@
 import { StyleSheet, Text, View, TextInput } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Button, Title } from "../components";
+import { StackNavigation } from "../App";
 
 export default function ChallengeRecapScreen() {
+  const { navigate } = useNavigation<StackNavigation>();
   return (
     <View style={styles.container}>
       <Title />
@@ -12,28 +15,25 @@ export default function ChallengeRecapScreen() {
           "Arrinera", assembled in?
         </Text>
         <View style={styles.responseContainer}>
-          <Text style={styles.respons}> China</Text>
+          <Text style={styles.respons}>China</Text>
         </View>
         <View style={styles.responseContainer}>
-          <Text style={styles.respons}> China</Text>
+          <Text style={styles.respons}>China</Text>
         </View>
         <View style={styles.responseContainer}>
-          <Text style={styles.respons}> China</Text>
+          <Text style={styles.respons}>China</Text>
         </View>
         <View style={styles.responseContainer}>
-          <Text style={styles.respons}> Poland</Text>
+          <Text style={styles.respons}>Poland</Text>
         </View>
-        {/* <View style={styles.response}>China</View>
-        <View style={styles.response}>China</View>
-        <View style={styles.response}>Poland</View> */}
       </View>
 
       <Button
         backgroundColor="#EAEAEA"
         text="Home"
-        fontStyles={{ fontColor: "black" }}
+        fontStyles={{ color: "black" }}
         onPress={() => {
-          console.log("navigate to home page");
+          navigate("Home");
         }}
       />
     </View>
