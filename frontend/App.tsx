@@ -60,7 +60,7 @@ export default function App() {
         />
         <Stack.Screen
           name="QuestionScreen"
-          component={() => QuestionScreen()} //refactor as children of screen
+          component={QuestionScreen} //refactor as children of screen
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

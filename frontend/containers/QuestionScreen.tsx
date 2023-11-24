@@ -4,7 +4,7 @@ import { AnswersButtons, Title, ProgessBar } from "../components";
 import { QuestionType } from "../types";
 import { htmlDecode } from "../utils";
 
-export default function QuestionScreen(url: string = "http://localhost:3001/api/quiz/daily") {
+export default function QuestionScreen({url = "http://localhost:3001/api/quiz/daily"} : {url?: string}) {
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
