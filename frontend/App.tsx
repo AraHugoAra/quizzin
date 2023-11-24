@@ -1,13 +1,29 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { NativeStackNavigationProp, createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  NativeStackNavigationProp,
+  createNativeStackNavigator
+} from "@react-navigation/native-stack";
 
 import { StyleSheet } from "react-native";
 
 //import screens
-import { ChallengeRankingScreen, SignupScreen, WeeklyRankingScreen, QuestionScreen, Home as HomeScreen } from "./containers";
+import {
+  ChallengeRankingScreen,
+  SignupScreen,
+  WeeklyRankingScreen,
+  QuestionScreen,
+  Home as HomeScreen,
+  ChallengeRecapScreen
+} from "./containers";
 
 //types
-export type ScreenNames = ["Home", "Signup", "ChallengeRanking", "WeeklyRanking", "QuestionScreen"] // type these manually
+export type ScreenNames = [
+  "Home",
+  "Signup",
+  "ChallengeRanking",
+  "WeeklyRanking",
+  "QuestionScreen"
+]; // type these manually
 export type RootStackParamList = Record<ScreenNames[number], undefined>;
 export type StackNavigation = NativeStackNavigationProp<RootStackParamList>;
 
@@ -35,6 +51,11 @@ export default function App() {
         <Stack.Screen
           name="WeeklyRanking"
           component={WeeklyRankingScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="WeeklyRanking"
+          component={ChallengeRecapScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
