@@ -8,7 +8,7 @@ export default function QuestionScreen({url = "http://localhost:3001/api/quiz/da
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [answers, setAnswers] = useState({});
+  const [answers, setAnswers] = useState<boolean[]>([]);
 
   const initQuiz = (data: QuestionType[]) => {
     setQuestions(data);
@@ -30,14 +30,6 @@ export default function QuestionScreen({url = "http://localhost:3001/api/quiz/da
 
   useEffect(() => fetchQuiz(), []);
 
-  //Remove after debugging:
-  useEffect(() => {
-    if (currentIndex === 0) {
-      console.log("answers: ", answers);
-      setAnswers({});
-    }
-  }, [currentIndex]);
-
   return !loading ? (
     <View style={styles.container}>
       <Title />
@@ -50,6 +42,7 @@ export default function QuestionScreen({url = "http://localhost:3001/api/quiz/da
           setCurrentIndex={setCurrentIndex}
           currentQuestion={questions[currentIndex]}
           numberOfQuestions={questions.length}
+          answers={answers}
           setAnswers={setAnswers}
         />
       </View>
